@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5 - SelectBox & Radio Group</title>
+</head>
+<body>
+<h2>BÀI 5: HIỂN THỊ DỮ LIỆU VỚI SELECT & RADIO</h2>
+
+<!-- Select Box -->
+<h3>Fill to SelectBox</h3>
+<select name="cbo">
+    <th:block th:each="staff: ${list}">
+        <option th:value="${staff.id}" th:text="${#strings.capitalizeWords(staff.fullname)}"></option>
+    </th:block>
+</select>
+
+<!-- Radio Button Group -->
+<h3>Create Radio Button Group</h3>
+<th:block th:each="staff: ${list}">
+    <label>
+        <input type="radio" name="rdo" th:value="${staff.id}">
+        <th:block th:text="${#strings.capitalizeWords(staff.fullname)}"></th:block>
+    </label>
+    <br>
+</th:block>
+
+</body>
+</html>

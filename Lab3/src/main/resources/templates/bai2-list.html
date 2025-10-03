@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2 - Danh sách Staff</title>
+</head>
+<body>
+<h2>BÀI 2: DANH SÁCH NHÂN VIÊN</h2>
+
+<div th:each="staff, st : ${list}">
+    <!-- Nếu có photo thì hiện ảnh, nếu không thì hiện 'photo null' -->
+    <th:block th:if="${staff.photo != null}">
+        <img th:src="@{|/photos/${staff.photo}|}" style="height:40px">
+    </th:block>
+    <th:block th:unless="${staff.photo != null}">
+        <span>photo null</span>
+    </th:block>
+
+    <!-- Số thứ tự -->
+    <b th:text="@{|${st.count}. |}"></b>
+
+    <!-- Họ tên viết hoa chữ cái đầu -->
+    <b th:text="${#strings.capitalizeWords(staff.fullname)}"></b>,
+
+    <!-- Lương định dạng -->
+    $<b th:text="${#numbers.formatDecimal(staff.salary, 0, 'COMMA', 2, 'POINT')}"></b>
+
+    <!-- Đường kẻ dưới, trừ phần tử cuối -->
+    <th:block th:if="${!st.last}">
+        <hr>
+    </th:block>
+</div>
+
+</body>
+</html>
