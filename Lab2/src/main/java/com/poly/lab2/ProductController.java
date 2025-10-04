@@ -1,6 +1,6 @@
 package com.poly.lab2;
 
-import com.example.demo.entity.Product;
+import com.poly.lab2.entity.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

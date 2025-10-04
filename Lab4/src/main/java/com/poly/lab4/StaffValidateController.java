@@ -1,6 +1,6 @@
 package com.poly.lab4;
 
-import com.poly.java.entity.Staff2;
+import com.poly.lab4.entity.Staff2;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
