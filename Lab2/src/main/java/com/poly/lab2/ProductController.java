@@ -13,27 +13,35 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    // Trang form mặc định
+    // 🟢 Hiển thị form sản phẩm
     @GetMapping("/product/form")
     public String form(Model model) {
-        // Product mặc định
-        Product p = new Product("iPhone 30", 5000.0);
-        model.addAttribute("p", p);
+        // Sản phẩm mặc định
+        Product defaultProduct = new Product("iPhone 30", 5000.0);
+        model.addAttribute("p", defaultProduct);
 
-        // Để tránh lỗi null khi gọi ${product.name}
+        // Để tránh lỗi null khi binding dữ liệu
         model.addAttribute("product", new Product());
 
-        return "product_form"; // trỏ tới file product_form.html
+        return "product_form"; // trỏ đến product_form.html
     }
 
-    // Lưu sản phẩm khi submit form
+    // 🟢 Lưu sản phẩm khi nhấn nút Save
     @PostMapping("/product/save")
     public String save(Model model, @ModelAttribute("product") Product p) {
         model.addAttribute("product", p);
+
+        // Thêm lại sản phẩm mặc định
+        Product defaultProduct = new Product("iPhone 30", 5000.0);
+        model.addAttribute("p", defaultProduct);
+
+        // Truyền danh sách sản phẩm (cho phần danh sách hiển thị)
+        model.addAttribute("items", getItems());
+
         return "product_form";
     }
 
-    // Danh sách sản phẩm mặc định
+    // 🟢 Danh sách sản phẩm mặc định
     @ModelAttribute("items")
     public List<Product> getItems() {
         return Arrays.asList(

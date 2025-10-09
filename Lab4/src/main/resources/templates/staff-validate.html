@@ -1,42 +1,55 @@
-<form th:object="${staff}" th:action="@{/staff/validate/save1}" method="post" enctype="multipart/form-data">
+<form th:object="${staff}" th:action="@{/staff/validate/save1}"
+      method="post" enctype="multipart/form-data">
+    <h2 th:text="${message}"></h2>
+    <h2 th:text="${staff.fullname}"></h2>
+    <style>
+        .error {
+            color: red;
+            font-style: italic;
+            margin-left: 6px;
+        }
+    </style>
 
-    <div th:if="${#fields.hasErrors('*')}">
-        <p style="color:red">Có lỗi, vui lòng sửa:</p>
-        <ul>
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-        </ul>
-    </div>
+    <p><b>Email:</b>
+        <input th:field="*{id}">
+        <span class="error" th:errors="*{id}"></span>
+    </p>
 
-    Email:
-    <input th:field="*{id}">
-    <i th:errors="*{id}"></i><hr>
+    <p><b>Họ và tên:</b>
+        <input th:field="*{fullname}">
+        <span class="error" th:errors="*{fullname}"></span>
+    </p>
 
-    Họ và tên:
-    <input th:field="*{fullname}">
-    <i th:errors="*{fullname}"></i><hr>
+    <p><b>Giới tính:</b>
+        <label><input type="radio" th:field="*{gender}" value="true">Nam</label>
+        <label><input type="radio" th:field="*{gender}" value="false">Nữ</label>
+        <span class="error" th:errors="*{gender}"></span>
+    </p>
 
-    Giới tính:
-    <input type="radio" th:field="*{gender}" value="true">Nam
-    <input type="radio" th:field="*{gender}" value="false">Nữ
-    <i th:errors="*{gender}"></i><hr>
+    <p><b>Ngày sinh:</b>
+        <input name="birthday" th:value="*{#dates.format(birthday, 'MM/dd/yyyy')}" />
+        <span class="error" th:errors="*{birthday}"></span>
+    </p>
 
-    Ngày sinh:
-    <!-- Cách an toàn: giữ name + format -->
-    <input name="birthday" th:value="*{#dates.format(birthday, 'MM/dd/yyyy')}" />
-    <i th:errors="*{birthday}"></i><hr>
+    <p><b>Ảnh:</b>
+        <input th:field="*{photo}" type="hidden">
+        <input name="photo_file" type="file">
+    </p>
 
-    <input th:field="*{photo}" type="hidden">
-    <input name="photo_file" type="file"><hr>
+    <p><b>Cấp bậc:</b>
+        <select th:field="*{level}">
+            <option value="0">Úy</option>
+            <option value="1">Tá</option>
+            <option value="2">Tướng</option>
+        </select>
+    </p>
 
-    <select th:field="*{level}">
-        <option value="0">Úy</option>
-        <option value="1">Tá</option>
-        <option value="2">Tướng</option>
-    </select><hr>
+    <p><b>Lương:</b>
+        <input th:field="*{salary}">
+        <span class="error" th:errors="*{salary}"></span>
+    </p>
 
-    Salary:
-    <input th:field="*{salary}">
-    <i th:errors="*{salary}"></i><hr>
-
-    <button type="submit">Validate</button>
+    <p>
+        <button type="submit">Validate</button>
+    </p>
 </form>

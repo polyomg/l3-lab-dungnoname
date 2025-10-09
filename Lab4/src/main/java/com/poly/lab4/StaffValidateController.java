@@ -17,8 +17,8 @@ public class StaffValidateController {
     // Hiển thị form
     @GetMapping("/staff/validate/form1")
     public String validateForm(Model model, @ModelAttribute("staff") Staff2 staff) {
-        model.addAttribute("message", "Vui lòng nhập thông tin nhân viên!");
-        return "staff-validate"; // đây là file staff-validate.html trong templates
+        model.addAttribute("message", "Vui lòng nhập thông tin ng dùng");
+        return "staff-validate";
     }
 
     // Xử lý submit
@@ -35,7 +35,7 @@ public class StaffValidateController {
         if (errors.hasErrors()) {
             model.addAttribute("message", "Vui lòng sửa các lỗi sau!");
         } else {
-            model.addAttribute("message", "Dữ liệu đã nhập đúng!");
+            model.addAttribute("message", "Hết lỗi r đó");
         }
 
         return "staff-validate";

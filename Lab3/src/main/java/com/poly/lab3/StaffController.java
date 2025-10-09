@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class StaffController {
-//  http://localhost:8080/staff/detail
+    //  http://localhost:8080/staff/detail
     @RequestMapping("/staff/detail")
     public String detail(Model model) {
         Staff staff = Staff.builder()

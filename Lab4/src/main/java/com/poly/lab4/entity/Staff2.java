@@ -18,6 +18,10 @@ public class Staff2 {
 
     @NotBlank(message = "Chưa nhập email")
     @Email(message = "Email không đúng định dạng")
+    @Pattern(
+            regexp = "^[A-Za-z0-9._%+-]+@gmail\\.com$",
+            message = "Email phải có đuôi @gmail.com"
+    )
     private String id;
 
     @NotBlank(message = "Chưa nhập họ và tên")

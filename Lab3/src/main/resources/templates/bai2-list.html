@@ -12,6 +12,7 @@
     <th:block th:if="${staff.photo != null}">
         <img th:src="@{|/photos/${staff.photo}|}" style="height:40px">
     </th:block>
+
     <th:block th:unless="${staff.photo != null}">
         <span>photo null</span>
     </th:block>

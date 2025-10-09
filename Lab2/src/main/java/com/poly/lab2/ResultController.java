@@ -15,8 +15,8 @@ public class ResultController {
     }
 
     @RequestMapping("/b")
-    public String m2(Model model) {
-        model.addAttribute("message", "I come from b");
+    public String m2(RedirectAttributes params) {
+        params.addAttribute("message", "I come from b");
         return "redirect:/a";
     }
 
@@ -26,7 +26,7 @@ public class ResultController {
         return "redirect:/a";
     }
 
-    @ResponseBody // ?3
+    @ResponseBody
     @RequestMapping("/d")
     public String m4() {
         return "I come from d";

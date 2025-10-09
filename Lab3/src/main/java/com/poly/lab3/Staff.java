@@ -17,7 +17,7 @@ public class Staff {
     private String fullname;
 // hihi
     @Default
-    private String photo = "photo.png";
+    private String photo = "img.png";
 
     @Default
     private Boolean gender = true;
