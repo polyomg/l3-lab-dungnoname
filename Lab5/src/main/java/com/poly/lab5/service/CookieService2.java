@@ -4,13 +4,15 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class CookieService {
-    private Integer num=1;
+public class CookieService2 {
+    private Integer num = 1;
+
     @Autowired
     private HttpServletResponse response;
+
+    @Autowired
+    private HttpServletRequest request;
 
     public Cookie create(String name, String value, int expiry) {
         Cookie cookie = new Cookie(name, value);
@@ -20,6 +22,7 @@ public class CookieService {
         response.addCookie(cookie);
         return cookie;
     }
+
     public Cookie add(String name, String value, int expiry) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
@@ -28,9 +31,6 @@ public class CookieService {
         response.addCookie(cookie);
         return cookie;
     }
-
-    @Autowired
-    private HttpServletRequest request;
 
     public String getValue(String name) {
         if (request.getCookies() != null) {
@@ -59,5 +59,5 @@ public class CookieService {
 
     public Integer getNum() {
         return num++;
-    };
+    }
 }
