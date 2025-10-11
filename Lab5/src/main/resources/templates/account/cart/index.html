@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+
+</head>
+<body>
+
+<h2> Your Shopping Cart</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Số lượng</th>
+        <th>Total Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cart.items}">
+        <form th:action="@{|/cart/update/${item.id}|}" method="post">
+            <input type="hidden" name="id" th:value="${item.id}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${#numbers.formatDecimal(item.price, 1, 2)}"></td>
+            <td>
+                <input type="number" name="qty" th:value="${item.qty}" min="1" onblur="this.form.submit()">
+            </td>
+            <td th:text="${#numbers.formatDecimal(item.price * item.qty, 1, 2)}"></td>
+            <td>
+                <a th:href="@{|/cart/remove/${item.id}|}">Remove</a>
+            </td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+<div class="summary">
+    <p>Tổng Số lượng: <span th:text="${cart.count}"></span></p>
+    <p>Total Price: <span th:text="${#numbers.formatDecimal(cart.amount, 1, 2)}"></span></p>
+</div>
+
+<div class="actions">
+    <a href="/cart/clear"> Clear Giỏ hàng</a> |
+    <a href="/item/index"> Add Hàng</a>
+</div>
+
+</body>
+</html>
