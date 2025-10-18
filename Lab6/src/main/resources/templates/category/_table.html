@@ -1,0 +1,16 @@
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="c : ${items}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+        <td>
+            <a th:href="@{'/category/edit/' + ${c.id}}">Edit</a>
+            <a th:href="@{'/category/delete/' + ${c.id}}"
+               onclick="return confirm('Bạn có chắc muốn xóa?')">Delete</a>
+        </td>
+    </tr>
+</table>

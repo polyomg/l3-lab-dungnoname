@@ -1,0 +1,55 @@
+<form th:object="${staff}" th:action="@{/staff/validate/save1}"
+      method="post" enctype="multipart/form-data">
+    <h2 th:text="${message}"></h2>
+    <h2 th:text="${staff.fullname}"></h2>
+    <style>
+        .error {
+            color: red;
+            font-style: italic;
+            margin-left: 6px;
+        }
+    </style>
+
+    <p><b>Email:</b>
+        <input th:field="*{id}">
+        <span class="error" th:errors="*{id}"></span>
+    </p>
+
+    <p><b>Họ và tên:</b>
+        <input th:field="*{fullname}">
+        <span class="error" th:errors="*{fullname}"></span>
+    </p>
+
+    <p><b>Giới tính:</b>
+        <label><input type="radio" th:field="*{gender}" value="true">Nam</label>
+        <label><input type="radio" th:field="*{gender}" value="false">Nữ</label>
+        <span class="error" th:errors="*{gender}"></span>
+    </p>
+
+    <p><b>Ngày sinh:</b>
+        <input name="birthday" th:value="*{#dates.format(birthday, 'MM/dd/yyyy')}" />
+        <span class="error" th:errors="*{birthday}"></span>
+    </p>
+
+    <p><b>Ảnh:</b>
+        <input th:field="*{photo}" type="hidden">
+        <input name="photo_file" type="file">
+    </p>
+
+    <p><b>Cấp bậc:</b>
+        <select th:field="*{level}">
+            <option value="0">Úy</option>
+            <option value="1">Tá</option>
+            <option value="2">Tướng</option>
+        </select>
+    </p>
+
+    <p><b>Lương:</b>
+        <input th:field="*{salary}">
+        <span class="error" th:errors="*{salary}"></span>
+    </p>
+
+    <p>
+        <button type="submit">Validate</button>
+    </p>
+</form>
