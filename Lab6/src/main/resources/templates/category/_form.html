@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form th:action="@{/category/create}" th:object="${item}" method="post">
+    <div>
+        <label>ID:</label><br>
+        <input type="text" th:field="*{id}" placeholder="Nhập ID (tối đa 3 ký tự)">
+        <br><span style="color:red" th:errors="*{id}"></span>
+    </div>
+
+    <div style="margin-top:10px;">
+        <label>Name:</label><br>
+        <input type="text" th:field="*{name}" placeholder="Nhập tên loại">
+        <br><span style="color:red" th:errors="*{name}"></span>
+    </div>
+
+    <div style="margin-top:15px;">
+        <button type="submit">Create</button>
+        <button formaction="/category/update" formmethod="post">Update</button>
+        <button type="reset">Clear</button>
+    </div>
+</form>
+</body>
+</html>
