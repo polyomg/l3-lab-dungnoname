@@ -28,11 +28,26 @@ public class ProductController {
 
     @RequestMapping("/search")
     public String search(Model model,
-                         @RequestParam("min") Optional<Double> min,
-                         @RequestParam("max") Optional<Double> max) {
+                         @RequestParam("min") Optional<Double> min
+
+//                         @RequestParam("max") Optional<Double> max) {
         double minPrice = min.orElse(Double.MIN_VALUE);
         double maxPrice = max.orElse(Double.MAX_VALUE);
-        List<Product> items = dao.findByPriceBetween(minPrice, maxPrice);
+//        if (minPrice >= maxPrice) {
+//            minPrice = Double.MIN_VALUE;
+//            maxPrice = Double.MAX_VALUE;
+//
+//            List<Product> items = dao.finAll();
+//            model.addAttribute("items", items);
+//            return "product/search";
+//        }
+
+//        if(minPrice >= maxPrice){
+//            double temp = minPrice;
+//            minPrice = maxPrice;
+//            maxPrice = temp;
+//        }
+        List<Product> items = dao.findByPriceGreaterThan(minPrice);
         model.addAttribute("items", items);
         return "product/search";
     }

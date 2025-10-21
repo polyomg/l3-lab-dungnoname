@@ -30,8 +30,8 @@
 
 <div style="margin-top:10px;">
   <a th:href="@{|/product/search-and-page?p=0|}">First</a>
-  <a th:href="@{|/product/search-and-page?p=${page.number - 1}|}">Previous</a>
-  <a th:href="@{|/product/search-and-page?p=${page.number + 1}|}">Next</a>
+  <a th:href="@{|/product/search-and-page?p=${page.number > 0 ? page.number - 1 : 0}|}">Previous</a>
+  <a th:href="@{|/product/search-and-page?p=${page.number < page.totalPages - 1 ? page.number + 1 : page.totalPages - 1}|}">Next</a>
   <a th:href="@{|/product/search-and-page?p=${page.totalPages - 1}|}">Last</a>
 </div>
 

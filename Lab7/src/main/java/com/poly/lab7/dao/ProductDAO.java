@@ -12,6 +12,8 @@ import java.util.List;
 
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
+
+    List<Product> findByPriceGreaterThan(double minPrice);
     List<Product> findByPriceBetween(double minPrice, double maxPrice);
 
 

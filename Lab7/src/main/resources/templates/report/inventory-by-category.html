@@ -8,12 +8,14 @@
 <h2>TỒN KHO THEO LOẠI</h2>
 <table border="1" style="width:100%; text-align:center;">
   <tr>
+      <th>Stt</th>
     <th>Loại hàng</th>
     <th>Tổng giá</th>
     <th>Số sản phẩm</th>
   </tr>
-  <th:block th:each="item : ${items}">
+  <th:block th:each="item, stt: ${items}">
     <tr>
+        <td th:text="${stt.count}"></td>
       <td th:text="${item.group.name}"></td>
       <td th:text="${item.sum}"></td>
       <td th:text="${item.count}"></td>
