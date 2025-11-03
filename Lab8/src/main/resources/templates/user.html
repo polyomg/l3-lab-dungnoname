@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+<body>
+
+<h1>User Management - CRUD</h1>
+<p>Fill in the data below.</p>
+
+<form th:object="${user}" method="post">
+    <div>
+        <label>UserID:</label>
+        <input th:field="*{id}">
+    </div>
+    <div>
+        <label>Password:</label>
+        <input th:field="*{password}" type="password">
+    </div>
+    <div>
+        <label>Full-name:</label>
+        <input th:field="*{fullname}">
+    </div>
+    <div>
+        <label>E-mail Address:</label>
+        <input th:field="*{email}">
+    </div>
+    <div>
+        <label>Role:</label>
+        <input th:field="*{admin}" type="radio" value="true"> Admin
+        <input th:field="*{admin}" type="radio" value="false"> User
+    </div>
+    <hr>
+    <div>
+        <button th:formaction="@{/user/create}">Create</button>
+
+        <button th:formaction="@{/user/update}">Update</button>
+
+        <button th:formaction="@{/user/delete}">Delete</button>
+
+        <button th:formaction="@{/user/reset}" formmethod="get">Reset</button>
+    </div>
+</form>
+
+<hr>
+
+<form th:action="@{/user/index}" method="get">
+    <label>Search by ID or Fullname:</label>
+    <input name="keywords" th:value="${keywords}" placeholder="Enter keyword...">
+    <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<table border="1" style="border-collapse: collapse; width: 100%;">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>User ID</th>
+        <th>Password</th>
+        <th>Full-name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item, state : ${items}">
+        <td th:text="${state.count}"></td>
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.password}"></td>
+        <td th:text="${item.fullname}"></td>
+        <td th:text="${item.email}"></td>
+        <td th:text="${item.admin ? 'Admin' : 'User'}"></td>
+        <td>
+            <a th:href="@{/user/edit/{id}(id=${item.id}, keywords=${keywords})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
